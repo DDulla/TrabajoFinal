@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerCarController : MonoBehaviour
 {
@@ -74,7 +75,7 @@ public class PlayerCarController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Game Over!");
-            GameManager.Instance.ResetScore();
+            SceneManager.LoadScene("Menu"); 
         }
     }
 
@@ -82,9 +83,8 @@ public class PlayerCarController : MonoBehaviour
     {
         if (other.CompareTag("PowerUp"))
         {
-            AudioManager.Instance.PlaySound("PowerUpSound"); 
+            AudioManager.Instance.PlaySound("PowerUpSound");
             GameManager.Instance.AddScore(100); 
         }
     }
 }
-
