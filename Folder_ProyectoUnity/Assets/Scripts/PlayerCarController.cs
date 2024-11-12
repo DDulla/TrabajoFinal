@@ -1,6 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI; 
 
 public class PlayerCarController : MonoBehaviour
 {
@@ -12,9 +13,8 @@ public class PlayerCarController : MonoBehaviour
     private Vector2 moveInput;
     public int maxTurbo = 100;
     private int currentTurbo;
-    public float turboUsageRate = 20f; 
-    public float turboRechargeRate = 10f; 
-   // public Slider turboSlider; 
+    public float turboUsageRate = 20f;
+    public float turboRechargeRate = 10f;
 
     private PlayerControls controls;
 
@@ -42,11 +42,6 @@ public class PlayerCarController : MonoBehaviour
     {
         currentSpeed = forwardSpeed;
         currentTurbo = maxTurbo;
-      //  if (turboSlider != null)
-        //{
-            //turboSlider.maxValue = maxTurbo;
-          //  turboSlider.value = currentTurbo;
-        //}
     }
 
     void Update()
@@ -72,11 +67,6 @@ public class PlayerCarController : MonoBehaviour
             }
         }
         currentTurbo = Mathf.Clamp(currentTurbo, 0, maxTurbo);
-
-      //  if (turboSlider != null)
-        //{
-          //  turboSlider.value = currentTurbo;
-        //}
     }
 
     void OnCollisionEnter(Collision collision)
@@ -84,6 +74,16 @@ public class PlayerCarController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Game Over!");
+            GameManager.Instance.ResetScore();
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            AudioManager.Instance.PlaySound("PowerUpSound"); 
+            GameManager.Instance.AddScore(100); 
         }
     }
 }
