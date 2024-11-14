@@ -74,17 +74,7 @@ public class PlayerCarController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Game Over!");
             SceneManager.LoadScene("Menu"); 
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("PowerUp"))
-        {
-            AudioManager.Instance.PlaySound("PowerUpSound");
-            GameManager.Instance.AddScore(100); 
         }
     }
 }

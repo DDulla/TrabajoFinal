@@ -23,13 +23,11 @@ public class GameManager : MonoBehaviour
     public void AddScore(int points)
     {
         score += points;
-        Debug.Log($"Score: {score}");
     }
 
     public void ResetScore()
     {
         score = 0;
-        Debug.Log("Score has been reset.");
     }
 }
 

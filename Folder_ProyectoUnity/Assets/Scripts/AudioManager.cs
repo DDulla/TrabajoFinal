@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip backgroundMusic; 
     public AudioClip menuMusic; 
     public List<AudioClip> sfxClips;
-
     private AudioSource musicSource;
     private List<AudioSource> sfxSources = new List<AudioSource>();
 
@@ -45,10 +44,6 @@ public class AudioManager : MonoBehaviour
             sfxSource.Play();
             sfxSources.Add(sfxSource);
             Destroy(sfxSource, clip.length);
-        }
-        else
-        {
-            Debug.LogWarning($"SFX clip with name {clipName} not found!");
         }
     }
 
