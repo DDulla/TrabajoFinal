@@ -7,7 +7,7 @@ public class Menu : MonoBehaviour
     public Slider masterSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
-    public ScreenTransition screenTransition; 
+    public ScreenTransition screenTransition;
 
     private void Start()
     {
@@ -28,6 +28,8 @@ public class Menu : MonoBehaviour
             GameObject audioManager = new GameObject("AudioManager");
             audioManager.AddComponent<AudioManager>();
         }
+
+        screenTransition.InitializeTransition();
     }
 
     public void StartGame()

@@ -1810,7 +1810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 9
-  rotationSpeed: 100
+  rotationSpeed: 1000
   brakeSpeed: 5
   accelerationSpeed: 15
   maxTurbo: 100

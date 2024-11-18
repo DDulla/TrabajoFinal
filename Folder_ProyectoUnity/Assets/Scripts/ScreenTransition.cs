@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening; 
+using DG.Tweening;
 
 public class ScreenTransition : MonoBehaviour
 {
@@ -16,7 +16,8 @@ public class ScreenTransition : MonoBehaviour
 
     public void InitializeTransition()
     {
-        //No me permitia agarrar el start desde mi menu, asi que con este metodo vacio me puedo saltar el error (igual lo estare checando)
+        blackScreen.anchoredPosition = Vector2.zero;
+        blackScreen.DOAnchorPos(new Vector2(0, Screen.height), 1f).SetEase(Ease.InOutQuad);
     }
 
     public void StartGame()
