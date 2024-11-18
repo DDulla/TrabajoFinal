@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +7,7 @@ public class Menu : MonoBehaviour
     public Slider masterSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
+    public ScreenTransition screenTransition; 
 
     private void Start()
     {
@@ -23,6 +22,7 @@ public class Menu : MonoBehaviour
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
         if (AudioManager.Instance == null)
         {
             GameObject audioManager = new GameObject("AudioManager");
@@ -33,7 +33,7 @@ public class Menu : MonoBehaviour
     public void StartGame()
     {
         AudioManager.Instance.PlayMusic(AudioManager.Instance.backgroundMusic);
-        SceneManager.LoadScene("Game");
+        screenTransition.StartGame();
     }
 
     public void QuitGame()
