@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -10,8 +8,7 @@ public class ScreenTransition : MonoBehaviour
 
     private void Start()
     {
-        blackScreen.anchoredPosition = Vector2.zero;
-        blackScreen.DOAnchorPos(new Vector2(0, Screen.height), 1f).SetEase(Ease.InOutQuad);
+        InitializeTransition();
     }
 
     public void InitializeTransition()

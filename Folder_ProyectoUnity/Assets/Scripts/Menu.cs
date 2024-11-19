@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
     public ScreenTransition screenTransition;
+    public TitleAnimator titleAnimator; 
 
     private void Start()
     {
