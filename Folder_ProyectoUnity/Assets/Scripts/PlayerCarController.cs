@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using DG.Tweening; 
+using DG.Tweening;
 
 public class PlayerCarController : MonoBehaviour
 {
     public float forwardSpeed = 10f;
-    public float rotationSpeed = 1000f; 
+    public float rotationSpeed = 1000f;
     public float brakeSpeed = 5f;
     public float accelerationSpeed = 15f;
     private float currentSpeed;
