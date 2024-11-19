@@ -37,8 +37,8 @@ public class Menu : MonoBehaviour
 
     public void StartGame()
     {
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.backgroundMusic);
         screenTransition.StartGame();
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.backgroundMusic);
     }
 
     public void QuitGame()
