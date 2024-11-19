@@ -2349,19 +2349,19 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1.0458374
-      value: 0.99528885
-      inSlope: 0
-      outSlope: 0
+      time: 0.86665857
+      value: 0.9599434
+      inSlope: -1.182522
+      outSlope: -1.182522
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.1057609
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 1
-  delay: 1.2
+  delay: 0.8
 --- !u!1 &1455650783
 GameObject:
   m_ObjectHideFlags: 0
