@@ -7,8 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
     public AudioMixer mainMixer;
-    public AudioClip backgroundMusic; 
-    public AudioClip menuMusic; 
+    public AudioClip backgroundMusic;
+    public AudioClip menuMusic;
     public List<AudioClip> sfxClips;
     private AudioSource musicSource;
     private List<AudioSource> sfxSources = new List<AudioSource>();
@@ -60,9 +60,9 @@ public class AudioManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (var sfxSource in sfxSources)
+        for (int i = 0; i < sfxSources.Count; i++)
         {
-            Destroy(sfxSource);
+            Destroy(sfxSources[i]);
         }
     }
 }

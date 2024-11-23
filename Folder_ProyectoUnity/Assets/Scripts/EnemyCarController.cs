@@ -1,32 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using DG.Tweening;
 
 public class EnemyCarController : MonoBehaviour
 {
-    public float speed = 10f;
-    public float rotationSpeed = 500f;
-    public float detectionRadius = 1.5f;
     public Transform target;
+    public NavMeshAgent agent;
     private bool isAvoidingCollision = false;
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     private void Update()
     {
         if (target != null && !isAvoidingCollision)
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-            Vector3 targetDirection = target.position - transform.position;
-            float singleStep = rotationSpeed * Time.deltaTime;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-
-            if (Vector3.Angle(transform.forward, targetDirection) > 10f)
-            {
-                transform.Translate(Vector3.right * 0.5f * Time.deltaTime, Space.World);
-            }
-
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius);
+            agent.SetDestination(target.position);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1.5f);
             for (int i = 0; i < hitColliders.Length; i++)
             {
                 Collider hitCollider = hitColliders[i];
@@ -36,8 +30,6 @@ public class EnemyCarController : MonoBehaviour
                     break;
                 }
             }
-
-            transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
 
@@ -46,8 +38,9 @@ public class EnemyCarController : MonoBehaviour
         isAvoidingCollision = true;
 
         Vector3 avoidDirection = (transform.position - collider.transform.position).normalized;
+        agent.isStopped = true;
 
-        float duration = 0.5f;
+        float duration = 1f;
         float angle = 15f;
 
         Vector3 currentRotation = transform.eulerAngles;
@@ -62,11 +55,12 @@ public class EnemyCarController : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.Translate(avoidDirection * speed * Time.deltaTime, Space.World);
+            transform.Translate(avoidDirection * agent.speed * Time.deltaTime, Space.World);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        agent.isStopped = false;
         isAvoidingCollision = false;
     }
 
