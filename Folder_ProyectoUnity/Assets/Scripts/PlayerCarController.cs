@@ -85,7 +85,7 @@ public class PlayerCarController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

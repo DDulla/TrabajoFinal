@@ -10,7 +10,7 @@ public class ScreenTransition : MonoBehaviour
 
     private void Start()
     {
-        InitializeTransition();
+
     }
 
     public void InitializeTransition()
