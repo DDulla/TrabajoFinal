@@ -17,28 +17,7 @@ public class PlayerCarController : MonoBehaviour
     private int currentTurbo;
     public float turboUsageRate = 20f;
     public float turboRechargeRate = 10f;
-
-    private PlayerControls controls;
-
-    private void OnEnable()
-    {
-        controls = new PlayerControls();
-        controls.Gameplay.Enable();
-        controls.Gameplay.Move.performed += OnMove;
-        controls.Gameplay.Move.canceled += OnMove;
-    }
-
-    private void OnDisable()
-    {
-        controls.Gameplay.Move.performed -= OnMove;
-        controls.Gameplay.Move.canceled -= OnMove;
-        controls.Gameplay.Disable();
-    }
-
-    private void OnMove(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-    }
+    public GameOverPanel gameOverPanel; 
 
     void Start()
     {
@@ -81,11 +60,16 @@ public class PlayerCarController : MonoBehaviour
         currentTurbo = Mathf.Clamp(currentTurbo, 0, maxTurbo);
     }
 
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("Menu");
+                gameOverPanel.ShowGameOverPanel();
         }
     }
 }

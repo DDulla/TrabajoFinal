@@ -7,21 +7,19 @@ using DG.Tweening;
 public class ScreenTransition : MonoBehaviour
 {
     public RectTransform blackScreen;
-
-    private void Start()
-    {
-        InitializeTransition();
-    }
+    public Vector2 startPos;
+    public Vector2 endPos;
+    public float transitionDuration = 1f;
 
     public void InitializeTransition()
     {
-        blackScreen.anchoredPosition = Vector2.zero;
-        blackScreen.DOAnchorPos(new Vector2(0, Screen.height), 1f).SetEase(Ease.InOutQuad);
+        blackScreen.anchoredPosition = startPos;
+        blackScreen.DOAnchorPos(endPos, transitionDuration).SetEase(Ease.InOutQuad);
     }
 
     public void StartGame()
     {
-        blackScreen.DOAnchorPos(Vector2.zero, 1f).SetEase(Ease.InOutQuad).OnComplete(() =>
+        blackScreen.DOAnchorPos(startPos, transitionDuration).SetEase(Ease.InOutQuad).OnComplete(() =>
         {
             SceneManager.LoadScene("Game");
         });
