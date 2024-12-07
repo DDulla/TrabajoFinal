@@ -69,7 +69,8 @@ public class PlayerCarController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-                gameOverPanel.ShowGameOverPanel();
+            gameOverPanel.ShowGameOverPanel();
+            Destroy(gameObject);
         }
     }
 }

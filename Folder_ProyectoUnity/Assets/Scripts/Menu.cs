@@ -40,6 +40,11 @@ public class Menu : MonoBehaviour
         screenTransition.StartGame();
         AudioManager.Instance.PlayMusic(AudioManager.Instance.backgroundMusic);
     }
+    public void StartProto()
+    {
+        screenTransition.StartProto();
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.backgroundMusic);
+    }
     public void GBToMenu()
     {
         SceneManager.LoadScene("Menu");

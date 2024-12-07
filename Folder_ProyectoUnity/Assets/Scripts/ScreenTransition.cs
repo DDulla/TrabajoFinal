@@ -24,4 +24,11 @@ public class ScreenTransition : MonoBehaviour
             SceneManager.LoadScene("Game");
         });
     }
+    public void StartProto()
+    {
+        blackScreen.DOAnchorPos(startPos, transitionDuration).SetEase(Ease.InOutQuad).OnComplete(() =>
+        {
+            SceneManager.LoadScene("Prototype");
+        });
+    }
 }
