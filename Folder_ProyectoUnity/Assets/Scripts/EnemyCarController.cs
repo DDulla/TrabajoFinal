@@ -68,7 +68,8 @@ public class EnemyCarController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            GameManager.Instance.AddScore(1); 
+            Destroy(gameObject); 
         }
     }
 }

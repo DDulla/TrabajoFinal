@@ -29,9 +29,4 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
     }
-    // public void PowerUpGenerator()
-    //{
-    //  
-    //}
 }
-
