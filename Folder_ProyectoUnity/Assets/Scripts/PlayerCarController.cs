@@ -17,7 +17,7 @@ public class PlayerCarController : MonoBehaviour
     private int currentTurbo;
     public float turboUsageRate = 20f;
     public float turboRechargeRate = 10f;
-    public GameOverPanel gameOverPanel; 
+    public int lives = 1;
 
     void Start()
     {
@@ -58,6 +58,12 @@ public class PlayerCarController : MonoBehaviour
         }
 
         currentTurbo = Mathf.Clamp(currentTurbo, 0, maxTurbo);
+
+        if (lives <= 0 && GameOverPanel.Instance != null)
+        {
+            GameOverPanel.Instance.ShowGameOverPanel();
+            Time.timeScale = 0;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -65,12 +71,46 @@ public class PlayerCarController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
 
+    public void ApplyPowerUp(PowerUp.PowerUpType type)
+    {
+        switch (type)
+        {
+            case PowerUp.PowerUpType.Score:
+                GameManager.Instance.AddScore(5);
+                break;
+            case PowerUp.PowerUpType.Speed:
+                accelerationSpeed += 4;
+                break;
+            case PowerUp.PowerUpType.Life:
+                lives += 1;
+                break;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            GameManager.Instance.CollectPowerUp();
+            Destroy(other.gameObject);
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            gameOverPanel.ShowGameOverPanel();
-            Destroy(gameObject);
+            lives -= 1;
+
+            if (lives <= 0)
+            {
+                if (GameOverPanel.Instance != null)
+                {
+                    GameOverPanel.Instance.ShowGameOverPanel();
+                }
+                Time.timeScale = 0;
+                Destroy(gameObject);
+            }
         }
     }
 }
