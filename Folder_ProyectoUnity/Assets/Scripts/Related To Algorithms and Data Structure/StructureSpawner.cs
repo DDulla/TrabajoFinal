@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,15 +14,14 @@ public class StructureSpawner : MonoBehaviour
         graph = new Graph<Transform>();
         graphNodes = new List<Graph<Transform>.Node>();
 
-        // Añadir nodos al grafo y crear los objetos
-        foreach (Transform child in transform)
+        for (int i = 0; i < transform.childCount; i++)
         {
+            Transform child = transform.GetChild(i);
             var node = graph.AddNode(child);
             graphNodes.Add(node);
             StartCoroutine(SpawnObjects(node));
         }
 
-        // Añadir aristas entre nodos (enlace simple para ejemplo)
         for (int i = 0; i < graphNodes.Count - 1; i++)
         {
             graph.AddEdge(graphNodes[i], graphNodes[i + 1]);
@@ -36,9 +34,10 @@ public class StructureSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnInterval);
             Transform nodeTransform = node.Data;
-            foreach (Transform child in nodeTransform)
+
+            for (int i = nodeTransform.childCount - 1; i >= 0; i--)
             {
-                Destroy(child.gameObject); // Eliminar el objeto anterior
+                Destroy(nodeTransform.GetChild(i).gameObject);
             }
 
             GameObject randomObject = spawnableObjects[Random.Range(0, spawnableObjects.Count)];

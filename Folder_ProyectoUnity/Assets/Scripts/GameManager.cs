@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -9,9 +7,9 @@ public class GameManager : MonoBehaviour
     public int score { get; private set; }
     public int speed { get; private set; }
     public int lives { get; private set; }
-    public TMP_Text trophiesText; // Referencia al texto en la pantalla de puntuación
+    public TMP_Text trophiesText; 
     private SimpleCircularLinkedList<PowerUp.PowerUpType> powerUpList;
-    private SimpleLinkedListForThrophies<string> obtainedTrophies; // Lista de IDs de trofeos obtenidos
+    private SimpleLinkedListForThrophies<string> obtainedTrophies; 
     private int trophiesCount = 0;
     private int totalTrophies = 4;
 

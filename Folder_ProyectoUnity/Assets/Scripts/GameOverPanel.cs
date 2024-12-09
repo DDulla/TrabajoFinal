@@ -14,7 +14,7 @@ public class GameOverPanel : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // No destruir al cargar nueva escena
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
@@ -31,7 +31,6 @@ public class GameOverPanel : MonoBehaviour
         int finalScore = GameManager.Instance.score;
         scoreText.text = "Final Score: " + finalScore;
 
-        // Actualizar la lista de mejores puntuaciones y el texto
         if (HighScoreManager.Instance != null)
         {
             HighScoreManager.Instance.AddScore(finalScore);
@@ -54,15 +53,15 @@ public class GameOverPanel : MonoBehaviour
 
     public void RetryLevel()
     {
-        gameOverPanel.SetActive(false); // Desactivar el panel antes de recargar la escena
+        gameOverPanel.SetActive(false); 
         GameManager.Instance.ResetScore();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Recargar la escena actual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
         Time.timeScale = 1;
     }
 
     public void GoToMenu()
     {
-        gameOverPanel.SetActive(false); // Desactivar el panel antes de recargar la escena
+        gameOverPanel.SetActive(false); 
         GameManager.Instance.ResetScore();
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1;
