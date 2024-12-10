@@ -53,11 +53,12 @@ public class GameOverPanel : MonoBehaviour
 
     public void RetryLevel()
     {
-        gameOverPanel.SetActive(false); 
+        gameOverPanel.SetActive(false);
         GameManager.Instance.ResetScore();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }
+
 
     public void GoToMenu()
     {
