@@ -8,7 +8,6 @@ public class EnemyCarController : MonoBehaviour
 
     private void Start()
     {
-        //agent = GetComponent<NavMeshAgent>();
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance; 
         agent.avoidancePriority = 50; 
     }
