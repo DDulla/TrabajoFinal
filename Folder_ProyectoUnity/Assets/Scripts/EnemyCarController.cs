@@ -8,8 +8,8 @@ public class EnemyCarController : MonoBehaviour
 
     private void Start()
     {
-        agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance; 
-        agent.avoidancePriority = 50; 
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        agent.avoidancePriority = 50;
     }
 
     private void Update()
@@ -27,5 +27,10 @@ public class EnemyCarController : MonoBehaviour
             GameManager.Instance.AddScore(1);
             Destroy(gameObject);
         }
+    }
+
+    public void SetPlayerTransform(Transform playerTransform)
+    {
+        target = playerTransform;
     }
 }

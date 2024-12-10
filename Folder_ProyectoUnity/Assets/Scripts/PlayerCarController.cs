@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
@@ -6,7 +5,7 @@ using DG.Tweening;
 public class PlayerCarController : MonoBehaviour
 {
     public float forwardSpeed = 10f;
-    public float rotationSpeed = 1000f;
+    public float rotationSpeed = 1600f;
     public float brakeSpeed = 5f;
     public float accelerationSpeed = 15f;
     private float currentSpeed;
@@ -109,6 +108,10 @@ public class PlayerCarController : MonoBehaviour
                 Time.timeScale = 0;
                 Destroy(gameObject);
             }
+        }
+        else if (collision.gameObject.CompareTag("Breakable"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

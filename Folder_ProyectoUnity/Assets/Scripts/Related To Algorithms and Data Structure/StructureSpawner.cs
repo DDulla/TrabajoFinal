@@ -42,8 +42,6 @@ public class StructureSpawner : MonoBehaviour
 
             GameObject randomObject = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
             GameObject spawnedObject = Instantiate(randomObject, nodeTransform.position, randomObject.transform.rotation, nodeTransform);
-
-            // Ajustar la escala del objeto instanciado a su escala original
             spawnedObject.transform.localScale = randomObject.transform.localScale;
         }
     }
